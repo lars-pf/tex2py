@@ -186,7 +186,7 @@ class TreeOfContents(object):
         if attr in self.valid_tags:
             return next(filter(lambda t: t.source.name == attr, self.branches), None)
         if attr[-1] == 's' and tag in self.valid_tags:
-            condition = lambda t: t.source.name == tag
+            condition = lambda t: not isinstance(t.source, str) and t.source.name == tag
             return filter(condition, self.branches)
         raise AttributeError("'TreeOfContents' object has no attribute '%s'" % attr)
 
